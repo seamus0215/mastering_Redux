@@ -1,8 +1,20 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import { render } from "react-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import App from "./components/App";
+import "./index.css";
 
-function Hi() {
-  return <h1>Hi</h1>;
-}
+import { Provider as ReduxProvider } from "react-redux";
+import configureStore from "./redux/configureStore";
 
-render(<Hi />, document.getElementById("app"));
+const store = configureStore();
+
+render(
+  <ReduxProvider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </ReduxProvider>,
+  document.getElementById("app")
+);
